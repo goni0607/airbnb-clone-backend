@@ -8,5 +8,5 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150, editable=False)
     email = models.EmailField(
         verbose_name="email address", unique=True, blank=True)
-    name = models.CharField(max_length=150)
-    is_host = models.BooleanField()
+    name = models.CharField(max_length=150, default="")
+    is_host = models.BooleanField(default=False)
