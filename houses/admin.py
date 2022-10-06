@@ -5,11 +5,11 @@ from .models import House
 @admin.register(House)
 class HouseAdmin(admin.ModelAdmin):
 
-    fields = (
-        "name",
-        "address",
-        ("price", "pets_allowed"),
-    )
+    # fields = (
+    #     "name",
+    #     "address",
+    #     ("price", "pets_allowed"),
+    # )
 
     list_display = (
         "name",
@@ -18,13 +18,10 @@ class HouseAdmin(admin.ModelAdmin):
         "pets_allowed",
     )
 
-    list_filter = (
-        "price",
-        "pets_allowed",
-    )
+    list_filter = ("price", "pets_allowed",)
 
     search_fields = ("address",)
 
-    list_display_links = ("name", "address",)
+    # list_display_links = ("name", "address",)
 
-    list_editable = ("pets_allowed",)
+    # list_editable = ("pets_allowed",)
