@@ -14,6 +14,9 @@ class ExperienceAdmin(admin.ModelAdmin):
         "end_time",
         "created_at",
     )
+    list_filter = (
+        "category",
+    )
 
 
 @admin.register(Perk)
