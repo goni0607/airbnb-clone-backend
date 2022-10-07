@@ -29,4 +29,4 @@ class Amenity(CommonModel):
     """ Amenity Model Definition """
 
     name = models.CharField(max_length=150)
-    description = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
