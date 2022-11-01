@@ -13,9 +13,14 @@ class Experience(CommonModel):
     start_time = models.TimeField()
     end_time = models.TimeField()
     description = models.TextField()
-    perks = models.ManyToManyField("experiences.Perk")
+    perks = models.ManyToManyField(
+        "experiences.Perk", related_name="experiences")
     category = models.ForeignKey(
-        "categories.Category", null=True, blank=True, on_delete=models.SET_NULL)
+        "categories.Category",
+        related_name="experiences",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return self.name

@@ -1,5 +1,6 @@
 from django.db import models
 from common.models import CommonModel
+from django.db.models import Sum
 
 
 class Room(CommonModel):
@@ -21,13 +22,34 @@ class Room(CommonModel):
     address = models.CharField(max_length=200)
     pet_friendly = models.BooleanField(default=True)
     kind = models.CharField(max_length=20, choices=RoomKindChoices.choices)
-    owner = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    amenities = models.ManyToManyField("rooms.Amenity")
+    owner = models.ForeignKey("users.User",
+                              related_name="rooms",
+                              on_delete=models.CASCADE)
+    amenities = models.ManyToManyField("rooms.Amenity",
+                                       related_name="rooms")
     category = models.ForeignKey(
-        "categories.Category", null=True, blank=True, on_delete=models.SET_NULL)
+        "categories.Category",
+        related_name="rooms",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return self.name
+
+    def total_amenities(self):
+        return self.amenities.count()
+
+    def rating(self):
+        count = self.reviews.count()
+        if count == 0:
+            return "No Review"
+        else:
+            sum = self.reviews.aggregate(Sum("rating"))
+            # total_rating = 0
+            # for review in self.reviews.all().values("rating"):
+            #     total_rating += review["rating"]
+            return round(sum["rating__sum"] / count, 2)
 
 
 class Amenity(CommonModel):
