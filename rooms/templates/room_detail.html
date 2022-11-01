@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room: {{room.name}}</title>
+</head>
+<body>
+    <h1>{{room.name}}</h1>
+    
+    <ul>
+        <li>country: {{room.country}}</li>
+        <li>city: {{room.city}}</li>
+        <li>price: {{room.price}}</li>
+        <li>category: {{room.category.name}}</li>
+        <li>amenities:
+            <ul>
+            {% for amenity in room.amenities.all %}
+                <li>{{amenity}}</li>
+            {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    <h2>Description</h2>
+    <p>{{room.description}}</p>
+</body>
+</html>
