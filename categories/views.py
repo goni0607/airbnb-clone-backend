@@ -14,8 +14,12 @@ def categories(request):
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)
     elif request.method == "POST":
-        print(request.data)
-        return Response({"created": True})
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            return Response({"created": True})
+        else:
+            return Response(serializer.errors)
+
     # categories = Category.objects.all()
     # json_data = serializers.serialize("json", categories)
     # return JsonResponse({'ok': True, 'categories': json_data, })
