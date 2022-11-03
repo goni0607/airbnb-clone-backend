@@ -6,7 +6,10 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = "__all__"
+        fields = (
+            "name",
+            "kind",
+        )
 
     # pk = serializers.IntegerField(read_only=True)
     # name = serializers.CharField(
