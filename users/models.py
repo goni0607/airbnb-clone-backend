@@ -20,7 +20,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150, editable=False)
     email = models.EmailField(
         verbose_name="email address", unique=True, blank=True)
-    avatar = models.URLField()
+    avatar = models.URLField(blank=True)
     name = models.CharField(max_length=150, default="")
     is_host = models.BooleanField(default=False)
     gender = models.CharField(max_length=10, choices=GenderChoices.choices)
