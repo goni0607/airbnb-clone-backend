@@ -33,6 +33,7 @@ class CreateRoomBookingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "Check-in date must be earlier than check-out date.")
         if Booking.objects.filter(
+            room=self.context['room'],
             check_in__lte=attrs['check_out'],
             check_out__gte=attrs['check_in'],
         ).exists():
