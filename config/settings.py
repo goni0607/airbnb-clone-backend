@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-yq_v6ch@n7n40=0@%^0()xbk0ri38!b8nw-0y%&nnj8k0xzeo1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.219.206']
 
 
 # Application definition
@@ -150,5 +150,12 @@ MEDIA_ROOT = "uploads"
 
 MEDIA_URL = "user-uploads/"
 
-
 PAGE_SIZE = 3
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'config.authentication.TrustMeBroAuthentication',
+    ]
+}
