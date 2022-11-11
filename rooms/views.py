@@ -1,3 +1,4 @@
+# import time
 from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
@@ -13,8 +14,6 @@ from bookings.serializers import PublicBookingSerializer, CreateRoomBookingSeria
 from categories.models import Category
 from medias.serializers import PhotoSerializer
 from reviews.serializers import ReviewSerializer
-
-from rooms import serializers
 
 
 class Rooms(APIView):

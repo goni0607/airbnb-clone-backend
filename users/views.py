@@ -130,3 +130,11 @@ class JWTLogIn(APIView):
             return Response({"token": token})
         else:
             return Response({"error": "Not authenticated."})
+
+
+class GithubLogIn(APIView):
+
+    def post(self, request):
+        code = request.data.get("code")
+        print(code)
+        return Response()
